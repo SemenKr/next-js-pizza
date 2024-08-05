@@ -10,7 +10,7 @@ const activeIndex = 3;
 
 export const Categories: React.FC<Props> = ({ className }) => {
 	return (
-		<div className={cn('inline-flex gap-1 bg-gray-50  p-2 rounded-2xl ', className)}>
+		<div className={cn('inline-flex gap-1 bg-gray-50  p-1 rounded-2xl ', className)}>
 			{categories.map((category, index) => (
 				<a className={cn(
 					'flex items-center h-11 rounded-2xl px-5 font-bold',

@@ -1,4 +1,4 @@
-import { Categories, Container, Title } from '@/components/shared';
+import { Categories, Container, SortPopup, Title } from '@/components/shared';
 
 export default function Home() {
   return (
@@ -7,6 +7,7 @@ export default function Home() {
 				<Title text='Все пиццы' size='lg' className='font-extrabold'/>
 
 				<Categories />
+				<SortPopup />
 			</Container>
     </main>
   );
