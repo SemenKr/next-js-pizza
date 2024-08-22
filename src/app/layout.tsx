@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html className={nunito.variable} lang="en">
 			<head>
-        <link data-rh="true" rel="icon" href="/favicon.png" />
+        <link data-rh="true" rel="icon" href="/favicon.ico" />
       </head>
       <body>
 				<Header />
