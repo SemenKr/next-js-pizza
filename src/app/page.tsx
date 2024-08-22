@@ -78,63 +78,63 @@ export default function Home() {
 									items: [{price: 300}]
 								},
 							]} categoryId={1} 	/>
-							<ProductsGroupList title={'Завтрак'} items={[
-															{
-																id: 1,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 2,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 3,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 4,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 5,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 6,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 7,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
-															{
-																id: 8,
-																name: 'Чоризо фреш',
-																imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
-																price: 300,
-																items: [{price: 300}]
-															},
+							<ProductsGroupList title={'Комбо'} items={[
+									{
+										id: 1,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 2,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 3,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 4,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 5,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 6,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 7,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
+									{
+										id: 8,
+										name: 'Чоризо фреш',
+										imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.avif',
+										price: 300,
+										items: [{price: 300}]
+									},
 							]} categoryId={2} 	/>
 						</div>
 					</div>
