@@ -4,6 +4,7 @@
 		"Checbox",
 		"clsx",
 		"lucide",
+		"prisma",
 		"zustand"
 	]
 }
