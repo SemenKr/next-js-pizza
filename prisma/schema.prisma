@@ -1,12 +1,16 @@
+// Клиент
 generator client {
   provider = "prisma-client-js"
 }
 
+// База данных
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+// Таблицы
 model User {
   id Int @id @default(autoincrement())
 
