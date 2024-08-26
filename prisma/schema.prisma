@@ -22,8 +22,48 @@ model User {
   updateAt  DateTime @default(now())
 }
 
+model Catecory {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
+}
+
 model Product {
   id Int @id @default(autoincrement())
 
-  name String
+  name     String
+  imageUrl String
+
+  ingredients Ingredient[]
+
+  catecory   Catecory? @relation(fields: [catecoryId], references: [id]) // поле для Js которое не храниттьбся в базе денных а нужго для связи продуктов с категориями
+  catecoryId Int? // это поле для базы данных
+
+  createdAt   DateTime      @default(now())
+  updateAt    DateTime      @default(now())
+  ProductItem ProductItem[]
+}
+
+model ProductItem {
+  id Int @id @default(autoincrement())
+
+  price     Int
+  size      Int? // может отсутсвовать, поэтому ? в конце
+  pizzaType Int?
+
+  product   Product @relation(fields: [productId], references: [id]) // связь с продуктами
+  productId Int
+}
+
+model Ingredient {
+  id Int @id @default(autoincrement())
+
+  name     String
+  price    Int
+  imageUrl String
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @default(now())
 }
