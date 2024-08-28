@@ -31,7 +31,7 @@ model User {
   updateAt  DateTime @default(now())
 }
 
-model Catecory {
+model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
@@ -45,8 +45,8 @@ model Product {
 
   ingredients Ingredient[]
 
-  catecory   Catecory?     @relation(fields: [catecoryId], references: [id]) // поле для Js которое не храниттьбся в базе денных а нужго для связи продуктов с категориями
-  catecoryId Int? // это поле для базы данных
+  category   Category?     @relation(fields: [categoryId], references: [id]) // поле для Js которое не храниттьбся в базе денных а нужго для связи продуктов с категориями
+  categoryId Int? // это поле для базы данных
   items      ProductItem[]
 
   createdAt DateTime @default(now())
