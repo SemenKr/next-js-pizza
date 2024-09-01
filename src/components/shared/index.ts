@@ -1,5 +1,5 @@
-import exp from 'constants';
-import { FilterCheckbox } from './filter-checkbox';
+export { FilterCheckbox } from './filter-checkbox';
+export { SearchInput } from './search-input';
 export { Header } from './header'
 export { Container } from './container'
 export { Title } from './title'
