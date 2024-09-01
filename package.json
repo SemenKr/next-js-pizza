@@ -15,7 +15,7 @@
 		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
 	},
 	"dependencies": {
-		"@prisma/client": "^5.18.0",
+		"@prisma/client": "^5.19.0",
 		"@radix-ui/react-checkbox": "^1.1.1",
 		"@radix-ui/react-dialog": "^1.1.1",
 		"@radix-ui/react-popover": "^1.1.1",
