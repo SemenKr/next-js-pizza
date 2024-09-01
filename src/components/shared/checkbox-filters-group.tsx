@@ -3,7 +3,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { FilterChecboxProps, FilterCheckbox } from './filter-checkbox';
-import { Input } from '../ui';
+import { Input, Skeleton } from '../ui';
 
 type Item = FilterChecboxProps;
 
@@ -24,7 +24,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 	title,
   items,
   defaultItems,
-  limit = 3,
+  limit = 4,
   searchInputPlaceholder = 'Поиск...',
   className,
   selectedIds,
@@ -38,6 +38,17 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   const [searchValue, setSearchValue] = React.useState('');
 
 
+
+if (loading) {
+	return <div className={cn(className)}>
+		<p className='font-bold mb-3 rounded-[8px]'>{title}</p>
+
+		{...Array(limit).fill(0).map((_, index) => (
+			<Skeleton key={index} className='h-6 mb-3 rounded-[8px]' />
+		))}
+		<Skeleton className='h-6 w-28 mb-3 rounded-[8px]' />
+	</div>
+}
 
 	const list = showAll ? items : defaultItems?.slice(0, limit);
 	
@@ -66,9 +77,9 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 						text={item.text} 
 						value={item.value}
 						endAdornment={item.endAdornment}
-						checked={false}
-						onCheckedChange={(ids) => console.log(ids)}
-
+						checked={selectedIds?.has(item.value)}
+						onCheckedChange={() => onClickCheckbox?.(item.value)}
+						name={name}
 					/>
 				))}
 			</div>

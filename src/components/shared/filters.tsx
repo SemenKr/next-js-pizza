@@ -1,4 +1,4 @@
-
+'use client';
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Title } from './title';
@@ -7,20 +7,58 @@ import { Input } from '../ui/input';
 import { Slider } from '../ui';
 import { RangeSlider } from './range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
+import { useFilterIngredients } from '../../../hooks/useFilterIngredients';
+import { useSet } from 'react-use';
+
+
 
 interface Props {
 	className?: string;
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
+	const {ingredients, loading, onAddId, selectedIds} = useFilterIngredients();
+
+	const items = ingredients.map((item) => (
+		{
+			value: String(item.id),
+			text: item.name
+		}
+	))
+
 	return (
 		<div className={cn('',className)}>
 			<Title text='Фильтрация' size='sm' className='mb-5 font-bold'/>
 			{/* Верхние чекбоксы */}
-			<div className="flex flex-col gap-4">
-				<FilterCheckbox text='Можно Собирать' value='1'/>
-				<FilterCheckbox text='Новинки' value='2'/>
-			</div>
+			<CheckboxFiltersGroup
+				title="Тип теста"
+				name="pizzaTypes"
+				className="mb-5"
+				items={[
+					{ text: 'Тонкое', value: '1' },
+					{ text: 'Традиционное', value: '2' },
+				]}
+		   defaultItems={[{ text: 'Тонкое', value: '1' },
+				{ text: 'Традиционное', value: '2' },]}  
+				loading={loading}    />
+
+			<CheckboxFiltersGroup
+        title="Размеры"
+        name="sizes"
+        className="mb-5"
+				defaultItems={[{ text: '20 см', value: '20' },
+          { text: '30 см', value: '30' },
+          { text: '40 см', value: '40' },]}
+        items={[
+          { text: '20 см', value: '20' },
+          { text: '30 см', value: '30' },
+          { text: '40 см', value: '40' },
+        ]}
+				loading={loading}
+				
+      />
+
+
       {/* Фильтр по цене */}
 			<div className="mt-10 pb-7">
         <p className="font-bold mb-3">Цена от и до:</p>
@@ -50,32 +88,17 @@ export const Filters: React.FC<Props> = ({ className }) => {
 			<CheckboxFiltersGroup 
 			title={'Ингредиенты'} 
 			className='mt-5'
-			limit={3}
-			defaultItems={[
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-			]}
-			items={[
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-				{ text: '20 см', value: '20' },
-				{ text: '30 см', value: '30' },
-				{ text: '40 см', value: '40' },
-			]}				
+			limit={6}
+			defaultItems={items.slice(0, 6)}
+			items={items}		
+			loading={loading}
+			onClickCheckbox={onAddId}
+			selectedIds={selectedIds}
+			name='ingredients'
 			/>
 
 			{/* Фильтр по категориям */}
 		</div>
 	);
 };
+
