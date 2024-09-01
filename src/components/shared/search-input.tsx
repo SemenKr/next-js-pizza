@@ -27,7 +27,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 		Api.products.search(searchQuery).
 		then(items => setProducts(items))
 	},
-	250,
+	150,
 	[searchQuery]);
 
 	const onClickItem = () => {
