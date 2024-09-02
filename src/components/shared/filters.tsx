@@ -2,13 +2,10 @@
 import React from 'react';
 import {cn} from '@/lib/utils';
 import {Title} from './title';
-import {FilterCheckbox} from './filter-checkbox';
 import {Input} from '../ui/input';
-import {Slider} from '../ui';
 import {RangeSlider} from './range-slider';
 import {CheckboxFiltersGroup} from './checkbox-filters-group';
 import {useFilterIngredients} from '../../../hooks/useFilterIngredients';
-import {useSet} from 'react-use';
 
 
 interface Props {
@@ -50,17 +47,13 @@ export const Filters: React.FC<Props> = ({className}) => {
                     {text: 'Тонкое', value: '1'},
                     {text: 'Традиционное', value: '2'},
                 ]}
-                defaultItems={[{text: 'Тонкое', value: '1'},
-                    {text: 'Традиционное', value: '2'},]}
                 loading={loading}/>
 
             <CheckboxFiltersGroup
                 title="Размеры"
                 name="sizes"
                 className="mb-5"
-                defaultItems={[{text: '20 см', value: '20'},
-                    {text: '30 см', value: '30'},
-                    {text: '40 см', value: '40'},]}
+
                 items={[
                     {text: '20 см', value: '20'},
                     {text: '30 см', value: '30'},
