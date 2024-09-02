@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {cn} from '@/lib/utils';
 import {Title} from './title';
 import {Input} from '../ui/input';
@@ -39,6 +39,16 @@ export const Filters: React.FC<Props> = ({className}) => {
             [name]: value,
         })
     }
+
+		useEffect(() => {
+			const filters = ({
+				...prices,
+				sizes: Array.from(sizes),
+				pizzaTypes: Array.from(pizzaTypes),
+				ingredients: Array.from(selectedIds),
+			})
+
+		},[prices, sizes, pizzaTypes, selectedIds])
 
     return (
         <div className={cn('', className)}>
