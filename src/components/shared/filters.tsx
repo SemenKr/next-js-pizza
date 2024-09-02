@@ -8,6 +8,7 @@ import {CheckboxFiltersGroup} from './checkbox-filters-group';
 import {useFilterIngredients} from '../../../hooks/useFilterIngredients';
 import { useSet } from 'react-use';
 import qs from 'qs';
+import { useRouter } from 'next/navigation';
 
 
 interface Props {
@@ -20,6 +21,7 @@ interface PriceProps {
 }
 
 export const Filters: React.FC<Props> = ({className}) => {
+	const router = useRouter();
     const {ingredients, loading, onAddId, selectedIds} = useFilterIngredients();
     const [prices, setPrice] = React.useState<PriceProps>({priceFrom: 0, priceTo: 5000});
 
@@ -51,8 +53,8 @@ export const Filters: React.FC<Props> = ({className}) => {
 
 			const queryString = qs.stringify(filters, {arrayFormat: 'comma'});
 
-			console.log(queryString);
-		},[prices, sizes, pizzaTypes, selectedIds])
+			router.push(`?${queryString}`)
+		},[prices, sizes, pizzaTypes, selectedIds, router])
 
     return (
         <div className={cn('', className)}>
