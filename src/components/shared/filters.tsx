@@ -7,6 +7,7 @@ import {RangeSlider} from './range-slider';
 import {CheckboxFiltersGroup} from './checkbox-filters-group';
 import {useFilterIngredients} from '../../../hooks/useFilterIngredients';
 import { useSet } from 'react-use';
+import qs from 'qs';
 
 
 interface Props {
@@ -48,6 +49,9 @@ export const Filters: React.FC<Props> = ({className}) => {
 				ingredients: Array.from(selectedIds),
 			})
 
+			const queryString = qs.stringify(filters, {arrayFormat: 'comma'});
+
+			console.log(queryString);
 		},[prices, sizes, pizzaTypes, selectedIds])
 
     return (
