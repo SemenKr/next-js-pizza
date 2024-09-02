@@ -6,6 +6,7 @@ import {Input} from '../ui/input';
 import {RangeSlider} from './range-slider';
 import {CheckboxFiltersGroup} from './checkbox-filters-group';
 import {useFilterIngredients} from '../../../hooks/useFilterIngredients';
+import { useSet } from 'react-use';
 
 
 interface Props {
@@ -20,6 +21,9 @@ interface PriceProps {
 export const Filters: React.FC<Props> = ({className}) => {
     const {ingredients, loading, onAddId, selectedIds} = useFilterIngredients();
     const [prices, setPrice] = React.useState<PriceProps>({priceFrom: 0, priceTo: 5000});
+
+		const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>([]));
+
 
     const items = ingredients.map((item) => (
         {
@@ -53,7 +57,7 @@ export const Filters: React.FC<Props> = ({className}) => {
                 title="Размеры"
                 name="sizes"
                 className="mb-5"
-
+								onClickCheckbox={toggleSizes}
                 items={[
                     {text: '20 см', value: '20'},
                     {text: '30 см', value: '30'},
@@ -65,7 +69,7 @@ export const Filters: React.FC<Props> = ({className}) => {
 
 
             {/* Фильтр по цене */}
-            <div className="mt-10 pb-7">
+            <div className="mt-10 pb-7"> 
                 <p className="font-bold mb-3">Цена от и до:</p>
                 <div className="flex gap-3 mb-5">
                     <Input
