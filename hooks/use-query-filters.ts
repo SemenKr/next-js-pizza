@@ -30,9 +30,6 @@ export const useQueryFilters = (filters: Filters) => {
 			router.push(`?${query}`, {
 				scroll: false, // Отключаем автоматическую прокрутку страницы
 			});
-
-			// Логируем текущее состояние фильтров в консоль для отладки
-			console.log(filters, 999);
 		}
 
 		// Помечаем, что компонент теперь смонтирован

@@ -15,7 +15,7 @@ interface Props {
 export const Filters: React.FC<Props> = ({ className }) => {
   // Получаем список ингредиентов и статус загрузки через кастомный хук
   const { ingredients, loading } = useIngredients();
-  
+
   // Инициализируем состояние фильтров через кастомный хук
   const filters = useFilters();
 
@@ -27,7 +27,6 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
   // Обновление диапазона цен на основе изменений слайдера
   const updatePrices = (prices: number[]) => {
-    console.log(prices, 999); // Логирование текущих цен для отладки
     filters.setPrices('priceFrom', prices[0]);
     filters.setPrices('priceTo', prices[1]);
   };
