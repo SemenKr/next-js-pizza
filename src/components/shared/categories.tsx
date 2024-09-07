@@ -10,15 +10,6 @@ interface Props {
 	items: Category[];
 }
 
-const categories = [
-	{ id: 1, name: 'Пиццы' },
-	{ id: 2, name: 'Комбо' },
-	{ id: 3, name: 'Завтраки' },
-	{ id: 4, name: 'Гриль' },
-	{ id: 5, name: 'Острые' },
-	{ id: 6, name: 'Закрытые' },
-];
-
 export const Categories: React.FC<Props> = ({items, className }) => {
 
 const categoryActiveId = useCategoryStore((state) => state.activeId);
