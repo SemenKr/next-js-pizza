@@ -13,11 +13,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html className={ nunito.variable } lang="en">
+		<html lang="en">
 			<head>
 				<link data-rh="true" rel="icon" href="/favicon.ico" />
 			</head>
-			<body>
+			<body className={ nunito.className }>
 				{ children }
 			</body>
 		</html>

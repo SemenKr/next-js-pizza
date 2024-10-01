@@ -17,10 +17,11 @@ export default async function Home() {
 	});
 
 	return (
-		<main>
+		<>
 			<Container className='mt-10 pb-14'>
 				<Title text='Все пиццы' size='lg' className='font-extrabold' />
 			</Container>
+
 			<TopBar categories={ categories } />
 
 			<Container className='mt-10 pb-14'>
@@ -46,6 +47,6 @@ export default async function Home() {
 					</div>
 				</div>
 			</Container>
-		</main>
+		</>
 	);
 }

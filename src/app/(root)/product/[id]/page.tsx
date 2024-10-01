@@ -1,4 +1,3 @@
-'use client'
 import { notFound } from 'next/navigation';
 import { Container, Title } from "@/components/shared";
 import { ProductImage } from "@/components/shared";
@@ -6,11 +5,7 @@ import { GroupVariants } from "@/components/shared/group-variant";
 import { prisma } from '../../../../../prisma/prisma-client';
 
 // eslint-disable-next-line @next/next/no-async-client-component
-export default async function ProductPage({ params: { id } }: {
-	params: {
-		id: string
-	}
-}) {
+export default async function ProductPage({ params: { id } }: { params: { id: string } }) {
 	const product = await prisma.product.findFirst({
 		where: { id: Number(id) },
 		include: {
@@ -41,7 +36,7 @@ export default async function ProductPage({ params: { id } }: {
 					<Title text={ product.name } size={ "md" } className={ "font-extrabold mb-1" } />
 
 
-					<p className={ "text-gray-400" }>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+					<p className={ "text-gray-400" }>Lorem ipsum dolor sit , consectetur  , sed do   incident ut labore et dolor Magna aqua. </p>
 
 					<GroupVariants
 						value='1'
