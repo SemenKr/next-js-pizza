@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/shared/components/shared/lib/utils';
 import { ChooseProductForm } from '../choose-product-form';
 import { ProductWithRelations } from '@/@types/prisma';
 import { Dialog } from '../../ui';
@@ -28,7 +28,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 				) }>
 				{
 					isPizzaForm ? (
-						<ChoosePizzaForm imageUrl={ product.imageUrl } name={ product.name } ingredients={ [] } items={ [] } onSubmit={ function (itemId: number, ingredients: number[]): void {
+						<ChoosePizzaForm imageUrl={ product.imageUrl } name={ product.name } ingredients={ product.ingredients } items={ [] } onSubmit={ function (itemId: number, ingredients: number[]): void {
 							throw new Error('Function not implemented.');
 						} } />
 					) : (

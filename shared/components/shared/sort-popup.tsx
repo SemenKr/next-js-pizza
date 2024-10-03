@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/shared/components/shared/lib/utils';
 import { ArrowUpDown } from 'lucide-react';
 
 interface Props {

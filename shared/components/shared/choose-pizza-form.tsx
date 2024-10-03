@@ -3,8 +3,12 @@ import { Ingredient, ProductItem } from '@prisma/client';
 import { Button } from '../ui';
 import { GroupVariants } from './group-variant';
 import { Title } from './title';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/shared/components/shared/lib/utils';
 import { PizzaImage } from './pizza-image';
+import { PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/shared/constants';
+import { useState } from 'react';
+import { IngredientItem } from '.';
+import { useSet } from 'react-use';
 
 
 interface Props {
@@ -56,7 +60,11 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 	// };
 	const textDetails = 'Вшитое описание';
 	const totalPrice = 350;
-	const size = 30;
+
+	const [size, setSize] = useState<PizzaSize>(20)
+	const [type, setType] = useState<PizzaType>(1)
+
+	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]));
 
 	return (
 		<div className={ cn(className, 'flex flex-1') }>
@@ -68,31 +76,31 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 				<p className="text-gray-400">{ textDetails }</p>
 
 				<div className="flex flex-col gap-4 mt-5">
-					{/* <GroupVariants
-            items={availableSizes}
-            value={String(size)}
-            onClick={(value) => setSize(Number(value) as PizzaSize)}
-          /> */}
+					<GroupVariants
+						items={ pizzaSizes }
+						value={ String(size) }
+						onClick={ value => setSize(Number(value) as PizzaSize) }
+					/>
 
-					{/* <GroupVariants
-            items={pizzaTypes}
-            value={String(type)}
-            // onClick={(value) => setType(Number(value) as PizzaType)}
-          /> */}
+					<GroupVariants
+						items={ pizzaTypes }
+						value={ String(type) }
+						onClick={ (value) => setType(Number(value) as PizzaType) }
+					/>
 				</div>
 
 				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
 					<div className="grid grid-cols-3 gap-3">
-						{/* {ingredients.map((ingredient) => (
-              <IngredientItem
-                key={ingredient.id}
-                name={ingredient.name}
-                price={ingredient.price}
-                imageUrl={ingredient.imageUrl}
-                onClick={() => addIngredient(ingredient.id)}
-                active={selectedIngredients.has(ingredient.id)}
-              />
-            ))} */}
+						{ ingredients.map((ingredient) => (
+							<IngredientItem
+								key={ ingredient.id }
+								name={ ingredient.name }
+								price={ ingredient.price }
+								imageUrl={ ingredient.imageUrl }
+								onClick={ () => addIngredient(ingredient.id) }
+								active={ selectedIngredients.has(ingredient.id) }
+							/>
+						)) }
 					</div>
 				</div>
 

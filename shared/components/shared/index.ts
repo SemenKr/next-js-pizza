@@ -1,3 +1,4 @@
+import { IngredientItem } from './ingredient-item';
 export { FilterCheckbox } from './filter-checkbox';
 export { SearchInput } from './search-input';
 export { Header } from './header'
@@ -11,4 +12,5 @@ export { RangeSlider } from './range-slider'
 export { PizzaImage } from './pizza-image'
 export { GroupVariants } from './group-variant'
 export { ChooseProductForm } from './choose-product-form'
+export { IngredientItem } from './ingredient-item'
 export * from './modals'

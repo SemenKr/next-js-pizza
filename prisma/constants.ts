@@ -21,7 +21,7 @@ export const _ingredients = [
 		name: 'Сырный бортик',
 		price: 179,
 		imageUrl:
-			'/public/assets/ingredients/cheese-trimmings.png',
+			'/assets/ingredients/cheese-trimmings.png',
 	},
 	{
 		name: 'Сливочная моцарелла',
