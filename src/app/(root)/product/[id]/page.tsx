@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { prisma } from '../../../../../prisma/prisma-client';
-import { Container, GroupVariants, ProductImage, Title } from '@/src/components/shared';
+import { Container, GroupVariants, PizzaImage, Title } from '@/src/components/shared';
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function ProductPage({ params: { id } }: { params: { id: string } }) {
@@ -28,7 +28,7 @@ export default async function ProductPage({ params: { id } }: { params: { id: st
 	return (
 		<Container className="flex flex-col my-10">
 			<div className={ "flex flex-1" }>
-				<ProductImage imageUrl={ product.imageUrl } size={ 30 } />
+				<PizzaImage imageUrl={ product.imageUrl } size={ 30 } />
 
 				<div className={ "w-[490px] bg-[#F7F6F5] p-7" }>
 					<Title text={ product.name } size={ "md" } className={ "font-extrabold mb-1" } />

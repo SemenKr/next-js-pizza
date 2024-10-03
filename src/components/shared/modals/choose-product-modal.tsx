@@ -4,10 +4,10 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/src/lib/utils';
 import { ChooseProductForm } from '../choose-product-form';
-
 import { ProductWithRelations } from '@/@types/prisma';
 import { Dialog } from '../../ui';
 import { DialogContent } from '../../ui/dialog';
+import { ChoosePizzaForm } from '../choose-pizza-form';
 
 interface Props {
 	product: ProductWithRelations;
@@ -16,7 +16,7 @@ interface Props {
 
 export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 	const router = useRouter();
-	const isPizzaForm = product
+	const isPizzaForm = Boolean(product.items[0].pizzaType)
 
 
 	return (
@@ -26,9 +26,15 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 					'p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden',
 					className,
 				) }>
-				<ChooseProductForm imageUrl={ product.imageUrl } name={ product.name } ingredients={ [] } items={ [] } onSubmit={ function (itemId: number, ingredients: number[]): void {
-					throw new Error('Function not implemented.');
-				} } />
+				{
+					isPizzaForm ? (
+						<ChoosePizzaForm imageUrl={ product.imageUrl } name={ product.name } ingredients={ [] } items={ [] } onSubmit={ function (itemId: number, ingredients: number[]): void {
+							throw new Error('Function not implemented.');
+						} } />
+					) : (
+						<ChooseProductForm imageUrl={ product.imageUrl } name={ product.name } />
+					)
+				}
 				{/* <ProductForm product={ product } onSubmit={ () => router.back() } /> */ }
 			</DialogContent>
 		</Dialog>

@@ -1,28 +1,20 @@
 import React from 'react';
-import { ProductImage } from './product-image';
 import { Title } from './title';
 import Image from "next/image";
-import { GroupVariants } from './group-variant';
 import { Button } from '../ui';
 import { cn } from '@/src/lib/utils';
 
 interface Props {
 	imageUrl: string;
 	name: string;
-	ingredients: any[];
-	items: any[];
 	loading?: boolean;
-	onSubmit: (itemId: number, ingredients: number[]) => void;
 	className?: string;
 }
 
 export const ChooseProductForm: React.FC<Props> = ({
 	name,
-	items,
 	imageUrl,
-	ingredients,
 	loading,
-	onSubmit,
 	className, }) => {
 
 	const textDetails = 'Вшитое описание'
