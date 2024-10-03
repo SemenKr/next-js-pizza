@@ -1,11 +1,11 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import { Title } from './title';
 import { Button } from '../ui';
 import Link from 'next/link';
 import { Ingredient } from '@prisma/client';
+import { cn } from '@/src/lib/utils';
 
 interface Props {
 	id: number;

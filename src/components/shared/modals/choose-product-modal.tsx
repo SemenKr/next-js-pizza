@@ -4,8 +4,10 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/src/lib/utils';
 import { ChooseProductForm } from '../choose-product-form';
-import { Dialog, DialogContent } from '@radix-ui/react-dialog';
+
 import { ProductWithRelations } from '@/@types/prisma';
+import { Dialog } from '../../ui';
+import { DialogContent } from '../../ui/dialog';
 
 interface Props {
 	product: ProductWithRelations;

@@ -1,10 +1,10 @@
 'use client'
 import React, { useEffect } from 'react';
 import { useIntersection } from 'react-use';
-import { cn } from '@/lib/utils';
 import { Title } from './title';
 import { ProductCard } from './product-card';
 import { useCategoryStore } from '../../../store/category';
+import { cn } from '@/src/lib/utils';
 
 
 interface Props {

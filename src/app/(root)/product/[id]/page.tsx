@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation';
-import { Container, Title } from "@/components/shared";
-import { ProductImage } from "@/components/shared";
-import { GroupVariants } from "@/components/shared/group-variant";
 import { prisma } from '../../../../../prisma/prisma-client';
+import { Container, GroupVariants, ProductImage, Title } from '@/src/components/shared';
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function ProductPage({ params: { id } }: { params: { id: string } }) {

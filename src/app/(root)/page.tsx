@@ -1,5 +1,6 @@
-import { Container, Filters, Title, TopBar } from '@/components/shared';
-import { ProductsGroupList } from '@/components/shared/products-group-list';
+
+import { TopBar, Filters, Title, Container } from '@/src/components/shared';
+import { ProductsGroupList } from '@/src/components/shared/products-group-list';
 import { prisma } from "../../../prisma/prisma-client";
 import React from "react";
 
