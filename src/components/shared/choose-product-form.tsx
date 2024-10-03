@@ -1,10 +1,10 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { ProductImage } from './product-image';
 import { Title } from './title';
 import Image from "next/image";
 import { GroupVariants } from './group-variant';
 import { Button } from '../ui';
+import { cn } from '@/src/lib/utils';
 
 interface Props {
 	imageUrl: string;

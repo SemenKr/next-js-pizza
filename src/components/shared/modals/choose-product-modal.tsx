@@ -2,19 +2,20 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Dialog } from '@/components/ui';
-import { cn } from '@/lib/utils';
-import { DialogContent } from '@/components/ui/dialog';
-import { Product } from '@prisma/client';
+import { cn } from '@/src/lib/utils';
 import { ChooseProductForm } from '../choose-product-form';
+import { Dialog, DialogContent } from '@radix-ui/react-dialog';
+import { ProductWithRelations } from '@/@types/prisma';
 
 interface Props {
-	product: Product;
+	product: ProductWithRelations;
 	className?: string;
 }
 
 export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 	const router = useRouter();
+	const isPizzaForm = product
+
 
 	return (
 		<Dialog open={ Boolean(product) } onOpenChange={ () => router.back() }>
