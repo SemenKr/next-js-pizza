@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
-import { prisma } from '../../../../../prisma/prisma-client';
-import { Container, GroupVariants, PizzaImage, Title } from '@/src/components/shared';
+import { Container, GroupVariants, PizzaImage, Title } from '@/shared/components/shared';
+import { prisma } from '@/prisma/prisma-client';
 
-// eslint-disable-next-line @next/next/no-async-client-component
 export default async function ProductPage({ params: { id } }: { params: { id: string } }) {
 	const product = await prisma.product.findFirst({
 		where: { id: Number(id) },
