@@ -58,13 +58,17 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 	// 		onSubmit(currentItemId, Array.from(selectedIngredients));
 	// 	}
 	// };
-	const textDetails = 'Вшитое описание';
-	const totalPrice = 350;
+
 
 	const [size, setSize] = useState<PizzaSize>(20)
 	const [type, setType] = useState<PizzaType>(1)
 
 	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]));
+
+	const textDetails = 'Вшитое описание';
+	const pizzaPrice = items.find((item) => item.pizzaType === type && item.size === size)?.price;
+	const totalPrice = pizzaPrice;
+	console.log(totalPrice, items);
 
 	return (
 		<div className={ cn(className, 'flex flex-1') }>
@@ -90,7 +94,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 				</div>
 
 				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
-					<div className="grid grid-cols-3 gap-3">
+					<div className="grid grid-cols-3 gap-4">
 						{ ingredients.map((ingredient) => (
 							<IngredientItem
 								key={ ingredient.id }

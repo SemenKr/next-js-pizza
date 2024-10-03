@@ -28,9 +28,12 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 				) }>
 				{
 					isPizzaForm ? (
-						<ChoosePizzaForm imageUrl={ product.imageUrl } name={ product.name } ingredients={ product.ingredients } items={ [] } onSubmit={ function (itemId: number, ingredients: number[]): void {
-							throw new Error('Function not implemented.');
-						} } />
+						<ChoosePizzaForm
+							imageUrl={ product.imageUrl }
+							name={ product.name }
+							ingredients={ product.ingredients }
+							items={ product.items }
+							onSubmit={ () => console.log('submit') } />
 					) : (
 						<ChooseProductForm imageUrl={ product.imageUrl } name={ product.name } />
 					)
