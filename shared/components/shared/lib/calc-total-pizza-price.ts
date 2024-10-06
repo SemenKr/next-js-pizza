@@ -6,25 +6,28 @@ import { Ingredient, ProductItem } from '@prisma/client';
  *
  * @param type - тип теста выбранной пиццы
  * @param size - размер выбранной пиццы
- * @param items - список вариаций
- * @param ingredients - список ингредиентов
- * @param selectedIngredients - выбранные ингредиенты
+ * @param items - список вариаций пицц (содержит информацию о разных типах и размерах пицц)
+ * @param ingredients - список ингредиентов, доступных для добавления в пиццу
+ * @param selectedIngredients - множество идентификаторов выбранных ингредиентов
  *
- * @returns number общую стоимость
+ * @returns number общую стоимость пиццы, включая выбранные ингредиенты
  */
 export const calcTotalPizzaPrice = (
-	type: PizzaType,
-	size: PizzaSize,
-	items: ProductItem[],
-	ingredients: Ingredient[],
-	selectedIngredients: Set<number>,
+	type: PizzaType, // Тип теста пиццы (например, тонкое или традиционное)
+	size: PizzaSize, // Размер пиццы (например, маленькая, средняя или большая)
+	items: ProductItem[], // Список доступных пицц с разными комбинациями типа теста и размера
+	ingredients: Ingredient[], // Список всех доступных ингредиентов, которые можно добавить в пиццу
+	selectedIngredients: Set<number>, // Множество, содержащее идентификаторы выбранных пользователем ингредиентов
 ) => {
+	// Находим цену пиццы по типу теста и размеру
 	const pizzaPrice =
 		items.find((item) => item.pizzaType === type && item.size === size)?.price || 0;
 
+	// Суммируем стоимость всех выбранных ингредиентов
 	const totalIngredientsPrice = ingredients
-		.filter((ingredient) => selectedIngredients.has(ingredient.id))
-		.reduce((acc, ingredient) => acc + ingredient.price, 0);
+		.filter((ingredient) => selectedIngredients.has(ingredient.id)) // Оставляем только те ингредиенты, которые выбрал пользователь
+		.reduce((acc, ingredient) => acc + ingredient.price, 0); // Суммируем стоимость выбранных ингредиентов
 
+	// Возвращаем общую стоимость: базовая цена пиццы + стоимость выбранных ингредиентов
 	return pizzaPrice + totalIngredientsPrice;
 };

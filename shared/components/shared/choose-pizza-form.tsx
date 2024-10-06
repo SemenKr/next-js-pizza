@@ -9,6 +9,7 @@ import { mapPizzaType, PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/sh
 import { useEffect, useState } from 'react';
 import { IngredientItem } from '.';
 import { useSet } from 'react-use';
+import { getPizzaDetails } from './lib';
 
 
 interface Props {
@@ -34,42 +35,20 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 	onSubmit,
 	className,
 }) => {
-	// const {
-	// 	size,
-	// 	type,
-	// 	selectedIngredients,
-	// 	availableSizes,
-	// 	currentItemId,
-	// 	setSize,
-	// 	setType,
-	// 	addIngredient,
-	// } = usePizzaOptions(items);
-
-	// const { totalPrice, textDetails } = getPizzaDetails(
-	// 	type,
-	// 	size,
-	// 	items,
-	// 	ingredients,
-	// 	selectedIngredients,
-	// );
-
-	// const handleClickAdd = () => {
-	// 	if (currentItemId) {
-	// 		onSubmit(currentItemId, Array.from(selectedIngredients));
-	// 	}
-	// };
-
 
 	const [size, setSize] = useState<PizzaSize>(20)
 	const [type, setType] = useState<PizzaType>(1)
 
 	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]));
-	const textDetails = `${size} см, ${mapPizzaType[type]} пицца`;
-	const pizzaPrice = items.find((item) => item.pizzaType === type && item.size === size)?.price || 0;
-	const totalIngredientsPrice = ingredients
-		.filter((ingredient) => selectedIngredients.has(ingredient.id))
-		.reduce((acc, ingredient) => acc + ingredient.price, 0);
-	const totalPrice = pizzaPrice + totalIngredientsPrice;
+
+
+	const { totalPrice, textDetails } = getPizzaDetails(
+		type,
+		size,
+		items,
+		ingredients,
+		selectedIngredients,
+	);
 
 	const availablePizza = items.filter((item) => item.pizzaType === type);
 	const availablePizzaSizes = pizzaSizes.map((item) => ({
