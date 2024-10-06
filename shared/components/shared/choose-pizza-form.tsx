@@ -1,31 +1,32 @@
-'use client';
-import { Ingredient, ProductItem } from '@prisma/client';
-import { Button } from '../ui';
-import { GroupVariants } from './group-variant';
-import { Title } from './title';
-import { cn } from '@/shared/components/shared/lib/utils';
-import { PizzaImage } from './pizza-image';
-import { mapPizzaType, PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/shared/constants';
-import { useEffect, useState } from 'react';
-import { IngredientItem } from '.';
-import { useSet } from 'react-use';
-import { getPizzaDetails } from './lib';
+'use client'; // Указывает, что этот компонент будет выполняться на стороне клиента
 
+import { Ingredient, ProductItem } from '@prisma/client'; // Импорт моделей ингредиентов и продуктов из Prisma
+import { Button } from '../ui'; // Импорт кнопки из пользовательского интерфейса
+import { GroupVariants } from './group-variant'; // Импорт компонента для отображения вариантов выбора (размер, тип теста)
+import { Title } from './title'; // Импорт компонента для отображения заголовка
+import { cn } from '@/shared/components/shared/lib/utils'; // Импорт функции для объединения классов CSS
+import { PizzaImage } from './pizza-image'; // Импорт компонента для отображения изображения пиццы
+import { mapPizzaType, PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/shared/constants'; // Импорт констант, связанных с пиццей
+import { useEffect, useState } from 'react'; // Импорт хуков React
+import { IngredientItem } from '.'; // Импорт компонента для отображения отдельного ингредиента
+import { useSet } from 'react-use'; // Импорт хука для работы с Set
+import { getPizzaDetails } from './lib'; // Импорт функции для получения деталей пиццы (цена, описание)
+import { usePizzaOptions } from '@/shared/hooks'; // Импорт пользовательского хука для управления опциями выбора пиццы
 
+// Описание пропсов компонента
 interface Props {
-	imageUrl: string;
-	name: string;
-	ingredients: Ingredient[];
-	items: ProductItem[];
-	loading?: boolean;
-	onSubmit: (itemId: number, ingredients: number[]) => void;
-	className?: string;
+	imageUrl: string; // URL изображения пиццы
+	name: string; // Название пиццы
+	ingredients: Ingredient[]; // Список доступных ингредиентов
+	items: ProductItem[]; // Список вариаций пицц (размер, тип теста и цена)
+	loading?: boolean; // Индикатор загрузки
+	onSubmit: (itemId: number, ingredients: number[]) => void; // Функция, вызываемая при добавлении пиццы в корзину
+	className?: string; // Дополнительный CSS-класс
 }
 
 /**
- * Форма выбора ПИЦЦЫ
+ * Компонент формы для выбора параметров пиццы (размер, тип теста, ингредиенты)
  */
-
 export const ChoosePizzaForm: React.FC<Props> = ({
 	name,
 	items,
@@ -36,12 +37,19 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 	className,
 }) => {
 
-	const [size, setSize] = useState<PizzaSize>(20)
-	const [type, setType] = useState<PizzaType>(1)
+	// Получаем состояние и функции для изменения выбранных параметров пиццы через хук usePizzaOptions
+	const {
+		size, // Выбранный размер пиццы
+		type, // Выбранный тип теста пиццы
+		selectedIngredients, // Выбранные ингредиенты
+		availableSizes, // Доступные размеры для выбранного типа пиццы
+		currentItemId, // ID текущей вариации пиццы
+		setSize, // Функция для изменения размера
+		setType, // Функция для изменения типа теста
+		addIngredient, // Функция для добавления/удаления ингредиента
+	} = usePizzaOptions(items);
 
-	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]));
-
-
+	// Получаем общую стоимость и текстовое описание пиццы
 	const { totalPrice, textDetails } = getPizzaDetails(
 		type,
 		size,
@@ -50,65 +58,62 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 		selectedIngredients,
 	);
 
-	const availablePizza = items.filter((item) => item.pizzaType === type);
-	const availablePizzaSizes = pizzaSizes.map((item) => ({
-		name: item.name,
-		value: item.value,
-		disabled: !availablePizza.some((pizza) => Number(pizza.size) === Number(item.value)),
-	}))
-
-	useEffect(() => {
-		const isAvailableSize = availablePizzaSizes.find((item) => Number(item.value) === size && !item.disabled);
-		const availableSize = availablePizzaSizes?.find((item) => !item.disabled);
-		if (!isAvailableSize && availableSize) {
-			setSize(Number(availableSize.value) as PizzaSize);
-		}
-	}, [size, availablePizzaSizes, type]);
-
+	// Функция, вызываемая при нажатии кнопки "Добавить в корзину"
 	const handleClickAdd = () => {
-		console.log({ availablePizzaSizes });
-	}
+		if (currentItemId) { // Проверяем, что есть текущий выбранный ID вариации пиццы
+			onSubmit(currentItemId, Array.from(selectedIngredients)); // Передаем ID вариации и список выбранных ингредиентов
+		}
+	};
+
 	return (
 		<div className={ cn(className, 'flex flex-1') }>
+			{/* Компонент для отображения изображения пиццы */ }
 			<PizzaImage imageUrl={ imageUrl } size={ size } />
 
 			<div className="w-[490px] bg-[#f7f6f5] p-7">
+				{/* Заголовок пиццы */ }
 				<Title text={ name } size="md" className="font-extrabold mb-1" />
 
+				{/* Текстовое описание пиццы (размер, тип теста) */ }
 				<p className="text-gray-400">{ textDetails }</p>
 
 				<div className="flex flex-col gap-4 mt-5">
+					{/* Компонент для выбора размера пиццы */ }
 					<GroupVariants
-						items={ availablePizzaSizes }
-						value={ String(size) }
-						onClick={ value => setSize(Number(value) as PizzaSize) }
+						items={ availableSizes } // Доступные размеры
+						value={ String(size) } // Текущий выбранный размер
+						onClick={ value => setSize(Number(value) as PizzaSize) } // Изменение размера при клике
 					/>
 
+					{/* Компонент для выбора типа теста */ }
 					<GroupVariants
-						items={ pizzaTypes }
-						value={ String(type) }
-						onClick={ (value) => setType(Number(value) as PizzaType) }
+						items={ pizzaTypes } // Доступные типы теста
+						value={ String(type) } // Текущий выбранный тип теста
+						onClick={ (value) => setType(Number(value) as PizzaType) } // Изменение типа теста при клике
 					/>
 				</div>
 
+				{/* Секция выбора ингредиентов */ }
 				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
 					<div className="grid grid-cols-3 gap-4">
 						{ ingredients.map((ingredient) => (
+							// Отображаем каждый ингредиент
 							<IngredientItem
 								key={ ingredient.id }
-								name={ ingredient.name }
-								price={ ingredient.price }
-								imageUrl={ ingredient.imageUrl }
-								onClick={ () => addIngredient(ingredient.id) }
-								active={ selectedIngredients.has(ingredient.id) }
+								name={ ingredient.name } // Название ингредиента
+								price={ ingredient.price } // Цена ингредиента
+								imageUrl={ ingredient.imageUrl } // Изображение ингредиента
+								onClick={ () => addIngredient(ingredient.id) } // Добавляем/удаляем ингредиент при клике
+								active={ selectedIngredients.has(ingredient.id) } // Выделяем активные ингредиенты
 							/>
 						)) }
 					</div>
 				</div>
 
+				{/* Кнопка для добавления пиццы в корзину */ }
 				<Button
-					loading={ loading }
-					onClick={ handleClickAdd }
+					loading={ loading } // Индикатор загрузки
+					onClick={ handleClickAdd } // Обработчик клика
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
 					Добавить в корзину за { totalPrice } ₽
 				</Button>
