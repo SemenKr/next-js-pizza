@@ -8,3 +8,4 @@ export { Checkbox } from './checkbox';
 export { Input } from './input';
 export { Drawer } from './drawer';
 export { Dialog } from './dialog';
+export { Sheet } from './sheet'
