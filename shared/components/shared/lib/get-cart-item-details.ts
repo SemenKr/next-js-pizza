@@ -13,7 +13,7 @@ export const getCartItemDetails = (
 		details.push(`${typeName} ${pizzaSize} см`);
 	}
 
-	if (ingredients) {
+	if (Array.isArray(ingredients)) {
 		details.push(...ingredients.map((ingredient) => ingredient.name));
 	}
 

@@ -15,11 +15,14 @@ import {
 import Link from 'next/link';
 import { Button } from '../ui';
 import { ArrowRight } from 'lucide-react';
+import { CartDrawerItem } from './cart-drawer-item';
+import { getCartItemDetails } from './lib';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>{ children }</SheetTrigger>
+
 			<SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
 				<SheetHeader>
 					<SheetTitle>
@@ -27,7 +30,25 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 					</SheetTitle>
 				</SheetHeader>
 
-				{/* items */ }
+				<div className="-mx-6 mt-5 overflow-auto flex-1">
+					<div className="mb-2">
+						<CartDrawerItem
+							id={ 1 }
+							imageUrl={ 'http://localhost:3000/_next/image?url=https%3A%2F%2Fmedia.dodostatic.net%2Fimage%2Fr%3A584x584%2F11EE7D61706D472F9A5D71EB94149304.webp&w=640&q=75' }
+							details={ getCartItemDetails('2', 3, [{ name: 'Сыр' }, { name: 'Молоко' }]) }
+							disabled={ false }
+							name={ 'Пицца Чизоро' }
+							price={ 123 }
+							quantity={ 2 }
+						// onClickCountButton={ (type) =>
+						// onClickCountButton(item.id, item.quantity, type)
+						// }
+						// onClickRemove={ () => removeCartItem(item.id) }
+						/>
+					</div>
+
+				</div>
+
 
 				<SheetFooter className="-mx-6 bg-white p-8">
 					<div className="w-full">
