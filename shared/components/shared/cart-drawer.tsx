@@ -35,7 +35,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 						<CartDrawerItem
 							id={ 1 }
 							imageUrl={ 'http://localhost:3000/_next/image?url=https%3A%2F%2Fmedia.dodostatic.net%2Fimage%2Fr%3A584x584%2F11EE7D61706D472F9A5D71EB94149304.webp&w=640&q=75' }
-							details={ getCartItemDetails('2', 3, [{ name: 'Сыр' }, { name: 'Молоко' }]) }
+							details={ getCartItemDetails([{ name: 'Ingredient 1', price: 10 }, { name: 'Ingredient 2', price: 20 }], 3, [{ name: 'Сыр' }, { name: 'Молоко' }]) }
 							disabled={ false }
 							name={ 'Пицца Чизоро' }
 							price={ 123 }
