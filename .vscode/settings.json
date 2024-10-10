@@ -1,16 +1,8 @@
 {
 	"cSpell.words": [
-		"Checbox",
-		"clsx",
-		"esnext",
-		"filtred",
-		"instannce",
-		"labore",
-		"lucide",
-		"prisma",
-		"zustand",
 		"Додстер",
 		"Дэнвич",
+		"Кастомная",
 		"Комбо",
 		"Логируем",
 		"мемоизации",
@@ -18,7 +10,18 @@
 		"наггетсы",
 		"Орео",
 		"преобразуя",
+		"токену",
 		"чекбоксов",
-		"чекбоксы"
+		"чекбоксы",
+		"Checbox",
+		"clsx",
+		"creat",
+		"esnext",
+		"filtred",
+		"instannce",
+		"labore",
+		"lucide",
+		"prisma",
+		"zustand"
 	]
 }
