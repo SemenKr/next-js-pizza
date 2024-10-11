@@ -10,6 +10,7 @@ import { DialogContent } from '../../ui/dialog';
 import { ChoosePizzaForm } from '../choose-pizza-form';
 import { addCartItem } from '../../../../services/cart';
 import { useCartStore } from '@/store';
+import toast from 'react-hot-toast';
 
 interface Props {
 	product: ProductWithRelations;
@@ -28,12 +29,20 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 			productItemId: firstItem.id,
 		})
 	}
-	const onAddPizza = (productItemId: number, ingredients: number[]) => {
-		addCartItem({
-			productItemId,
-			ingredients
-		})
+	const onAddPizza = async (productItemId: number, ingredients: number[]) => {
+		try {
+			await addCartItem({
+				productItemId,
+				ingredients
+			});
+			toast.success('Пицца добавлена в корзину')
+		} catch (error) {
+			toast.error('Произошла ошибка при добавлении в корзину')
+			console.error(error)
+		}
+
 	}
+
 
 	return (
 		<Dialog open={ Boolean(product) } onOpenChange={ () => router.back() }>
