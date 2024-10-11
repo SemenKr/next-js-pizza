@@ -9,12 +9,18 @@ interface Props {
 	name: string;
 	loading?: boolean;
 	className?: string;
+	onSubmit: VoidFunction;
 }
+
+/**
+ * Форма выбора продукта
+ */
 
 export const ChooseProductForm: React.FC<Props> = ({
 	name,
 	imageUrl,
 	loading,
+	onSubmit,
 	className, }) => {
 
 	const textDetails = 'Вшитое описание'
@@ -43,7 +49,7 @@ export const ChooseProductForm: React.FC<Props> = ({
 
 				<Button
 					loading={ loading }
-					// onClick={ handleClickAdd }
+					onClick={ onSubmit }
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
 					Добавить в корзину за { totalPrice } ₽
 				</Button>
