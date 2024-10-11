@@ -28,7 +28,12 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 			productItemId: firstItem.id,
 		})
 	}
-	const onAddPizza = (productItemId: number, ingredients: number[]) => { }
+	const onAddPizza = (productItemId: number, ingredients: number[]) => {
+		addCartItem({
+			productItemId,
+			ingredients
+		})
+	}
 
 	return (
 		<Dialog open={ Boolean(product) } onOpenChange={ () => router.back() }>
@@ -44,9 +49,13 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 							name={ product.name }
 							ingredients={ product.ingredients }
 							items={ product.items }
-							onSubmit={ () => console.log('submit') } />
+							onSubmit={ onAddPizza } />
 					) : (
-						<ChooseProductForm imageUrl={ product.imageUrl } name={ product.name } />
+						<ChooseProductForm
+							imageUrl={ product.imageUrl }
+							name={ product.name }
+							onSubmit={ onAddProduct }
+						/>
 					)
 				}
 				{/* <ProductForm product={ product } onSubmit={ () => router.back() } /> */ }
