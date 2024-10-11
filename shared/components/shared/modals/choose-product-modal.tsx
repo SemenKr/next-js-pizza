@@ -54,6 +54,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 						<ChooseProductForm
 							imageUrl={ product.imageUrl }
 							name={ product.name }
+							price={ firstItem.price }
 							onSubmit={ onAddProduct }
 						/>
 					)
