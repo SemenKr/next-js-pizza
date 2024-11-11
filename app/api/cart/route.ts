@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
 
 		// Создаём ответ с обновлённой корзиной и устанавливаем токен в cookies
 		const resp = NextResponse.json(updatedUserCart);
-		resp.cookies.set('cartToken', token); // Сохраняем токен корзины
+		resp.cookies.set('cartToken', token); // Сохраняем токен корзины в cookies
 		return resp;
 	} catch (error) {
 		// Логируем ошибку на сервере и возвращаем сообщение об ошибке
