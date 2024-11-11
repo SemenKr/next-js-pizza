@@ -1,5 +1,5 @@
 import { prisma } from '@/prisma/prisma-client';
-import { updateCartTotalAmount } from '@/shared/components/shared/lib';
+import { updateCartTotalAmount } from '@/shared/lib';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
@@ -23,10 +23,10 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 		}
 
 		await prisma.cartItem.update({
-			where: {
+			where: { // ищем по id 
 				id,
 			},
-			data: {
+			data: { // обновляем только quantity
 				quantity: data.quantity,
 			},
 		});

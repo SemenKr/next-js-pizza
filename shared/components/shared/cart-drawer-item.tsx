@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from './lib/utils';
+import { cn } from '@/shared/lib/utils';
 import * as CartItem from './cart-item-details';
 import { CartItemProps } from './cart-item-details/cart-item-details.types';
 import { CountButton } from './count-button';

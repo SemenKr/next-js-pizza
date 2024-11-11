@@ -15,11 +15,11 @@ import Link from 'next/link'; // Импорт для работы с навиг�
 import { Button } from '../ui'; // Кастомная кнопка из UI-компонентов
 import { ArrowLeft, ArrowRight } from 'lucide-react'; // Импорт иконок для стрелок
 import { CartDrawerItem } from './cart-drawer-item'; // Компонент для отображения отдельного элемента корзины
-import { getCartItemDetails } from './lib'; // Функция для получения деталей товара
-import { cn } from './lib/utils'; // Вспомогательная функция для условных классов
+import { cn } from '@/shared/lib/utils'; // Вспомогательная функция для условных классов
 import { PizzaSize, PizzaType } from '@/shared/constants'; // Константы для типов пиццы
 import { Title } from './title'; // Компонент для отображения заголовков
 import { useCart } from '@/shared/hooks'; // Кастомный хук для работы с корзиной
+import { getCartItemDetails } from '@/shared/lib';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
@@ -80,11 +80,11 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 										<CartDrawerItem
 											id={ item.id }
 											imageUrl={ item.imageUrl }
-											details={ getCartItemDetails(
-												item.ingredients,
-												item.pizzaType as PizzaType,
-												item.pizzaSize as PizzaSize,
-											) }
+											details={getCartItemDetails(
+                        item.ingredients,
+                        item.pizzaType as PizzaType,
+                        item.pizzaSize as PizzaSize,
+                      )}
 											disabled={ item.disabled }
 											name={ item.name }
 											price={ item.price ?? 0 } // Защита от отсутствия цены

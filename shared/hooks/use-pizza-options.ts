@@ -3,7 +3,7 @@ import React from 'react'; // Импорт React
 import { Variant } from '../components/shared/group-variant'; // Импорт интерфейса для вариантов выбора (размер, тип теста)
 import { useSet } from 'react-use'; // Импорт хука useSet для работы с множеством (Set)
 import { ProductItem } from '@prisma/client'; // Импорт модели ProductItem из Prisma
-import { getAvailablePizzaSizes } from '../components/shared/lib'; // Импорт функции для получения доступных размеров пиццы
+import { getAvailablePizzaSizes } from '../lib';
 
 // Интерфейс, описывающий возвращаемые данные из хука
 interface ReturnProps {

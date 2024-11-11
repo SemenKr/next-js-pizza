@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/shared/components/shared/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import { ChooseProductForm } from '../choose-product-form';
 import { ProductWithRelations } from '@/@types/prisma';
 import { Dialog } from '../../ui';
 import { DialogContent } from '../../ui/dialog';
 import { ChoosePizzaForm } from '../choose-pizza-form';
 import { addCartItem } from '../../../../services/cart';
-import { useCartStore } from '@/store';
+import { useCartStore } from '@/shared/store';
 import toast from 'react-hot-toast';
 
 interface Props {

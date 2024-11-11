@@ -1,18 +1,20 @@
 import React from 'react';
-import { cn } from './lib/utils';
 import { Button } from '../ui';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import { CartDrawer } from './cart-drawer';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
 	className?: string;
 }
 
 export const CartButton: React.FC<Props> = ({ className }) => {
+
+
 	return (
 		<CartDrawer>
 			<Button variant="default" className={ cn(className) }>
-				<b>520 ₽</b>
+				<b>{400} ₽</b>
 				<span className="h-full w-[1px] bg-white/30 mx-3" />
 				<div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
 					<ShoppingCart size={ 16 } className="relative" strokeWidth={ 2 } />

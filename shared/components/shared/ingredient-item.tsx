@@ -1,4 +1,4 @@
-import { cn } from '@/shared/components/shared/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import { CircleCheck } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';

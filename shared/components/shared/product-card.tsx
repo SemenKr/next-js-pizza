@@ -5,7 +5,7 @@ import { Title } from './title';
 import { Button } from '../ui';
 import Link from 'next/link';
 import { Ingredient } from '@prisma/client';
-import { cn } from '@/shared/components/shared/lib/utils';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
 	id: number;

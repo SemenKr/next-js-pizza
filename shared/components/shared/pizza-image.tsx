@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/shared/components/shared/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import Image from "next/image";
 
 interface Props {

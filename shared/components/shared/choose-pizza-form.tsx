@@ -4,14 +4,13 @@ import { Ingredient, ProductItem } from '@prisma/client'; // Импорт мод
 import { Button } from '../ui'; // Импорт кнопки из пользовательского интерфейса
 import { GroupVariants } from './group-variant'; // Импорт компонента для отображения вариантов выбора (размер, тип теста)
 import { Title } from './title'; // Импорт компонента для отображения заголовка
-import { cn } from '@/shared/components/shared/lib/utils'; // Импорт функции для объединения классов CSS
 import { PizzaImage } from './pizza-image'; // Импорт компонента для отображения изображения пиццы
-import { mapPizzaType, PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/shared/constants'; // Импорт констант, связанных с пиццей
-import { useEffect, useState } from 'react'; // Импорт хуков React
+import {  PizzaSize, pizzaSizes, PizzaType, pizzaTypes } from '@/shared/constants'; // Импорт констант, связанных с пиццей
 import { IngredientItem } from '.'; // Импорт компонента для отображения отдельного ингредиента
 import { useSet } from 'react-use'; // Импорт хука для работы с Set
-import { getPizzaDetails } from './lib'; // Импорт функции для получения деталей пиццы (цена, описание)
 import { usePizzaOptions } from '@/shared/hooks'; // Импорт пользовательского хука для управления опциями выбора пиццы
+import { getPizzaDetails } from '@/shared/lib';
+import { cn } from '@/shared/lib/utils';
 
 // Описание пропсов компонента
 interface Props {

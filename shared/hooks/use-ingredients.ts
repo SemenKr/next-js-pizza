@@ -1,6 +1,6 @@
-import { Api } from '../../services/api-client'; // Импорт клиента API для работы с сервером
 import { Ingredient } from '@prisma/client'; // Импорт типа Ingredient, получаемого из Prisma
 import React from 'react'; // Импорт React
+import { Api } from '../services/api-client';
 
 // Хук для загрузки и управления состоянием ингредиентов
 export const useIngredients = () => {

@@ -1,7 +1,7 @@
 // Импортируем prisma-клиент для работы с базой данных и объекты NextRequest и NextResponse для обработки запросов
 import { prisma } from '@/prisma/prisma-client';
-import { CreateCartItemValues } from '@/services/dto/cart.dto';
-import { findOrCreateCart, updateCartTotalAmount } from '@/shared/components/shared/lib';
+import { findOrCreateCart, updateCartTotalAmount } from '@/shared/lib';
+import { CreateCartItemValues } from '@/shared/services/dto/cart.dto';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Асинхронная функция для обработки GET-запроса
