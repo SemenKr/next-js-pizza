@@ -36,7 +36,7 @@ export default async function ProductPage({ params: { id } }: { params: { id: st
 					<p className={ "text-gray-400" }>Lorem ipsum dolor sit , consectetur  , sed do   incident ut labore et dolor Magna aqua. </p>
 
 					<GroupVariants
-						value='1'
+						value='2'
 						items={ [
 							{
 								name: 'Маленькая',
