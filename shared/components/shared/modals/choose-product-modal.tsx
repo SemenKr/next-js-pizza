@@ -11,6 +11,7 @@ import { ChoosePizzaForm } from '../choose-pizza-form';
 import { useCartStore } from '@/shared/store';
 import toast from 'react-hot-toast';
 import { error } from 'console';
+import { ProductForm } from '../product-form';
 
 interface Props {
 	product: ProductWithRelations;
@@ -45,34 +46,14 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
 
 
 	return (
-		<Dialog open={ Boolean(product) } onOpenChange={ () => router.back() }>
-			<DialogContent
-				className={ cn(
-					'p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden',
-					className,
-				) }>
-				{
-					isPizzaForm ? (
-						<ChoosePizzaForm
-							imageUrl={ product.imageUrl }
-							name={ product.name }
-							ingredients={ product.ingredients }
-							items={ product.items }
-							onSubmit={ onSubmit }
-							loading={loading}
-							/>
-					) : (
-						<ChooseProductForm
-							imageUrl={ product.imageUrl }
-							name={ product.name }
-							price={ firstItem.price }
-							onSubmit={ onSubmit }
-							loading={loading}
-						/>
-					)
-				}
-				{/* <ProductForm product={ product } onSubmit={ () => router.back() } /> */ }
-			</DialogContent>
-		</Dialog>
+		<Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
+		<DialogContent
+			className={cn(
+				'p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden',
+				className,
+			)}>
+			<ProductForm product={product} onSubmit={() => router.back()} />
+		</DialogContent>
+	</Dialog>
 	);
 };
