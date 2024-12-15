@@ -36,7 +36,7 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
 			name: ingredient.name,  // Название ингредиента
 			price: ingredient.price,  // Цена ингредиента
 		})),  // Преобразуем массив ингредиентов из DTO
-	}));
+	})) as CartStateItem[];
 
 	// Возвращаем массив товаров и общую сумму корзины
 	return {
