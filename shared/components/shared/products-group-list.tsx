@@ -5,11 +5,12 @@ import { Title } from './title';
 import { ProductCard } from './product-card';
 import { useCategoryStore } from '../../store/category';
 import { cn } from '@/shared/lib/utils';
+import { ProductWithRelations } from '../../../@types/prisma';
 
 
 interface Props {
 	title: string;
-	items: any[];
+	items: ProductWithRelations[];
 	className?: string;
 	listClassName?: string;
 	categoryId: number;
