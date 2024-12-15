@@ -35,7 +35,7 @@ export const findPizzas = async (params: GetSearchParams) => {
       products: {
         // Сортируем продукты по убыванию их ID
         orderBy: {
-          id: 'desc',
+          id: 'asc',
         },
         // Указываем условия для фильтрации продуктов
         where: {
