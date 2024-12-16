@@ -27,7 +27,6 @@ export const ProductForm: React.FC<Props> = ({ product, onSubmit: _onSubmit }) =
         productItemId: itemId,
         ingredients,
       });
-debugger
       toast.success(product.name + ' добавлена в корзину');
 
       _onSubmit?.();
