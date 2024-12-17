@@ -25,10 +25,10 @@ export const CheckoutCart: React.FC<Props> = ({
     <WhiteBlock title="1. Корзина" className={className}>
       <div className="flex flex-col gap-5">
         {loading
-          ? [...Array(4)].map((_, index) => <CheckoutItemSkeleton key={index} />)
+          ? [...Array(items.length)].map((_, index) => <CheckoutItemSkeleton key={index} />)
           : items.map((item) => (
               <CheckoutItem
-                key={item.id}
+                key={item.id!}
                 id={item.id}
                 imageUrl={item.imageUrl}
                 details={getCartItemDetails(
@@ -37,7 +37,7 @@ export const CheckoutCart: React.FC<Props> = ({
                   item.pizzaSize as PizzaSize,
                 )}
                 name={item.name}
-                price={item.price}
+                price={item.price!}
                 quantity={item.quantity}
                 disabled={item.disabled}
                 onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
